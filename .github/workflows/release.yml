@@ -1,0 +1,59 @@
+name: Release OfficeForge Suite
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+          cache-dependency-path: officeforge/package-lock.json
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-msvc
+
+      - name: Install frontend dependencies
+        working-directory: officeforge
+        run: npm ci
+
+      - name: Run workspace tests
+        working-directory: officeforge
+        run: cargo test --workspace
+
+      - name: Build Tauri Desktop Suite and Release
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          projectPath: officeforge
+          tagName: ${{ github.ref_name }}
+          releaseName: 'OfficeForge ${{ github.ref_name }}'
+          releaseBody: |
+            ## OfficeForge — Unified Productivity Suite for Windows
+            
+            This release contains the complete Windows desktop application suite featuring:
+            - **OfficeForge Writer** (Word processor)
+            - **OfficeForge Sheets** (Spreadsheets & AST formula engine)
+            - **OfficeForge Slides** (Presentations & interactive canvas)
+            
+            ### Included Artifacts
+            - **OfficeForge Installer** (`.exe` NSIS setup installer)
+            - **OfficeForge Portable** (`.exe` standalone desktop application)
+          releaseDraft: false
+          prerelease: false
