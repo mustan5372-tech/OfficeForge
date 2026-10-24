@@ -1,0 +1,13 @@
+[package]
+name = "officeforge-slides"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+description = "Presentation document model and slide manipulation engine"
+
+[dependencies]
+officeforge-core = { path = "../officeforge-core" }
+serde.workspace = true
+serde_json.workspace = true
+uuid.workspace = true
+tracing.workspace = true

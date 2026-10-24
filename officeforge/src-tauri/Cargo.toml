@@ -1,0 +1,33 @@
+[package]
+name = "officeforge-app"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+description = "OfficeForge desktop application — Tauri entry point"
+
+[lib]
+name = "officeforge_lib"
+crate-type = ["staticlib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["devtools"] }
+tauri-plugin-opener = "2"
+tauri-plugin-dialog = "2"
+tauri-plugin-fs = "2"
+serde.workspace = true
+serde_json.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+uuid.workspace = true
+chrono.workspace = true
+anyhow.workspace = true
+
+officeforge-core = { path = "../crates/officeforge-core" }
+officeforge-writer = { path = "../crates/officeforge-writer" }
+officeforge-sheets = { path = "../crates/officeforge-sheets" }
+officeforge-slides = { path = "../crates/officeforge-slides" }
+officeforge-ooxml = { path = "../crates/officeforge-ooxml" }
+officeforge-storage = { path = "../crates/officeforge-storage" }

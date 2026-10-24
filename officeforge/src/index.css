@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* OfficeForge Design Tokens */
+  --color-forge-50: #f0f4ff;
+  --color-forge-100: #dbe4ff;
+  --color-forge-200: #bac8ff;
+  --color-forge-300: #91a7ff;
+  --color-forge-400: #748ffc;
+  --color-forge-500: #5c7cfa;
+  --color-forge-600: #4c6ef5;
+  --color-forge-700: #4263eb;
+  --color-forge-800: #3b5bdb;
+  --color-forge-900: #364fc7;
+
+  --color-writer: #4263eb;
+  --color-writer-light: #dbe4ff;
+  --color-sheets: #2b8a3e;
+  --color-sheets-light: #d3f9d8;
+  --color-slides: #e8590c;
+  --color-slides-light: #ffe8cc;
+
+  --color-surface: #ffffff;
+  --color-surface-alt: #f8f9fa;
+  --color-surface-hover: #f1f3f5;
+  --color-surface-active: #e9ecef;
+  --color-border: #dee2e6;
+  --color-border-light: #e9ecef;
+  --color-text: #212529;
+  --color-text-secondary: #495057;
+  --color-text-tertiary: #868e96;
+
+  /* Dark theme tokens set via .dark class */
+  --color-dark-surface: #1a1b1e;
+  --color-dark-surface-alt: #25262b;
+  --color-dark-surface-hover: #2c2e33;
+  --color-dark-surface-active: #373a40;
+  --color-dark-border: #373a40;
+  --color-dark-text: #e9ecef;
+  --color-dark-text-secondary: #adb5bd;
+  --color-dark-text-tertiary: #868e96;
+
+  --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+
+/* Global resets */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent text selection on UI elements */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-tertiary);
+}
+
+/* Focus ring */
+*:focus-visible {
+  outline: 2px solid var(--color-forge-500);
+  outline-offset: 2px;
+}
+
+/* Dark theme */
+.dark {
+  color-scheme: dark;
+}
+
+.dark body,
+.dark #root {
+  background: var(--color-dark-surface);
+  color: var(--color-dark-text);
+}
+
+/* Smooth transitions */
+.transition-colors {
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+/* Tooltip base */
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  background: var(--color-text);
+  color: var(--color-surface);
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 150ms ease;
+  z-index: 9999;
+}
+
+[data-tooltip]:hover::after {
+  opacity: 1;
+}

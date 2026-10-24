@@ -1,0 +1,15 @@
+[package]
+name = "officeforge-storage"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+description = "File operations, autosave, recovery, and recent file management"
+
+[dependencies]
+officeforge-core = { path = "../officeforge-core" }
+serde.workspace = true
+serde_json.workspace = true
+chrono.workspace = true
+tracing.workspace = true
+thiserror.workspace = true
+uuid.workspace = true

@@ -1,0 +1,18 @@
+[package]
+name = "officeforge-ooxml"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+description = "Office Open XML package handling, parsing, and format adapters"
+
+[dependencies]
+officeforge-core = { path = "../officeforge-core" }
+officeforge-writer = { path = "../officeforge-writer" }
+officeforge-sheets = { path = "../officeforge-sheets" }
+officeforge-slides = { path = "../officeforge-slides" }
+serde.workspace = true
+serde_json.workspace = true
+quick-xml.workspace = true
+zip.workspace = true
+tracing.workspace = true
+thiserror.workspace = true

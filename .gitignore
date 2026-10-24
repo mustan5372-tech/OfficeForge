@@ -7,15 +7,26 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Node dependencies & bundles
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+dist-ssr/
 *.local
+
+# Rust build artifacts
+target/
+**/target/
+
+# Local release binaries (distributed via GitHub Releases / local release folder)
+release/
+**/release/
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
